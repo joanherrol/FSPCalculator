@@ -1,8 +1,0 @@
-{
-  "Operations": [
-    {
-      "Expression": "2 + 5 - 5 + -5",
-      "Result": -3.0
-    }
-  ]
-}

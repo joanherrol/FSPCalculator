@@ -1,8 +1,0 @@
-{
-  "Operations": [
-    {
-      "Expression": "a + b",
-      "Result": 0.0
-    },
-    {
-      "Expression": "4 = v"
