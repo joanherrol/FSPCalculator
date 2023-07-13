@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace CalculatorLibrary
 {
+    // Exception for syntax errors
+    public class SyntaxException : Exception
+    {
+        public SyntaxException(string message)
+            : base(message)
+        {
+        }
+    }
+
     // Exception for eval errors (for readability) 
     public class EvalException : Exception
     {
+
         public EvalException(string message)
             : base(message)
         {
