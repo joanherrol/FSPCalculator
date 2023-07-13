@@ -1,0 +1,6 @@
+{
+  "Operations": [
+    {
+      "Expression": "2 + 4 - 5",
+      "Result": 1.0
+    }

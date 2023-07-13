@@ -1,0 +1,16 @@
+{
+  "Operations": [
+    {
+      "Expression": "2.3 + 2.7 - 5",
+      "Result": 0.0
+    },
+    {
+      "Expression": "10 - 10 * 5",
+      "Result": -40.0
+    },
+    {
+      "Expression": "10 / 0",
+      "Result": "Infinity"
+    }
+  ]
+}
