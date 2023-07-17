@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,18 +9,18 @@ namespace CalculatorLibrary
 {
     public class Parser
     {
+        Tokenizer _tokenizer;
+
         // Constructor - just store the tokenizer
         public Parser(Tokenizer tokenizer)
         {
             _tokenizer = tokenizer;
         }
 
-        Tokenizer _tokenizer;
-
         // Parse an entire expression and check EOF was reached
         public Node ParseExpression()
         {
-            //Parse add/substract operators first to achieve correct operator priority
+            //  Parse add/substract operators first to achieve correct operator priority
             var expr = ParseAddSubtract();
 
             // Check everything was consumed
@@ -32,61 +33,67 @@ namespace CalculatorLibrary
         // Parse a sequence of add/subtract operators
         Node ParseAddSubtract()
         {
-            // Parse the left hand side
+            // Parse the left hand side as multiply/divide to achieve correct operator priority
             var lhs = ParseMultiplyDivide();
 
             while (true)
             {
                 // Work out the operator
-                Func<double, double, double> op = null;
+                Func<double, double, double>? op = null;
+                //  If operator is add store addition lambda expression
                 if (_tokenizer.Token == Token.Add)
                 {
                     op = (a, b) => a + b;
                 }
+                //  If operator is subtract store subtraction lambda expression
                 else if (_tokenizer.Token == Token.Subtract)
                 {
                     op = (a, b) => a - b;
                 }
 
-                // Binary operator found?
+                //  If no more operators are found it means we reached end of expression,
+                //  return left hand side which contains the whole expression tree
                 if (op == null)
-                    return lhs;             // no
+                    return lhs; 
 
-                // Skip the operator
+                //  Skip the operator token, we already stored it
                 _tokenizer.NextToken();
 
-                // Parse the right hand side of the expression
+                //  Parse the right hand side of the expression
                 var rhs = ParseMultiplyDivide();
 
-                // Create a binary node and use it as the left-hand side from now on
+                //  Create a binary node and use it as the left-hand side from now on
                 lhs = new OpNode(lhs, rhs, op);
             }
         }
 
-        // Parse an sequence of add/subtract operators
+        // Parse a sequence of multiply/divide operators
         Node ParseMultiplyDivide()
         {
-            // Parse the left hand side
+            //Parse the left hand side as unary, to achieve correct operator preference
             var lhs = ParseUnary();
 
             while (true)
             {
                 // Work out the operator
-                Func<double, double, double> op = null;
+                Func<double, double, double>? op = null;
+                // If operator is multiply store multiplication lambda expression
                 if (_tokenizer.Token == Token.Multiply)
                 {
                     op = (a, b) => a * b;
                 }
+                // If operator is divide store division lambda expression
                 else if (_tokenizer.Token == Token.Divide)
                 {
                     op = (a, b) => a / b;
                 }
 
-                // Binary operator found?
+                //  If no more operators are found it means we reached end of expression,
+                //  return left hand side which contains the whole expression tree
                 if (op == null)
-                    return lhs;             // no
+                    return lhs;
 
-                // Skip the operator
+                // Skip the operator token, we already stored it
                 _tokenizer.NextToken();
 
                 // Parse the right hand side of the expression
@@ -121,7 +128,7 @@ namespace CalculatorLibrary
                     // Note this recurses to self to support negative of a negative
                     var rhs = ParseUnary();
 
-                    // Create unary node
+                    // Create unary node with negative of x lambda expression as operator
                     return new UnaryNode(rhs, (a) => -a);
                 }
 

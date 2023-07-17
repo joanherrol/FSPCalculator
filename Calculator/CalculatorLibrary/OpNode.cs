@@ -8,8 +8,7 @@ namespace CalculatorLibrary
 {
     internal class OpNode : Node
     {
-        // Constructor accepts the two nodes to be operated on and function
-        // that performs the actual operation
+        //  Binary node that represents one of the four available operations
         public OpNode(Node lhs, Node rhs, Func<double, double, double> op)
         {
             _lhs = lhs;

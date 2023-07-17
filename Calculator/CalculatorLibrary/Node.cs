@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalculatorLibrary
 {
-    // Node - abstract class representing one node in the expression 
+    // Node - abstract class representing one node in the expression tree
     public abstract class Node
     {
         public abstract double Eval();

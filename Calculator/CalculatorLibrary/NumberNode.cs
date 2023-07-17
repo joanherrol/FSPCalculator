@@ -8,7 +8,7 @@ namespace CalculatorLibrary
 {
     internal class NumberNode : Node
     {
-        //Leaf node representing a number (double)
+        //  Leaf node representing a number (double)
         public NumberNode(double number)
         {
             _number = number;

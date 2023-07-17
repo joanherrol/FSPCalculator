@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalculatorLibrary
 {
-    // Exception for syntax errors
+    // Exception for syntax errors (for readability) 
     public class SyntaxException : Exception
     {
         public SyntaxException(string message)
@@ -15,7 +15,7 @@ namespace CalculatorLibrary
         }
     }
 
-    // Exception for eval errors (for readability) 
+    // Exception for evaluation errors (for readability) 
     public class EvalException : Exception
     {
 

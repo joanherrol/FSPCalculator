@@ -8,8 +8,7 @@ namespace CalculatorLibrary
 {
     internal class UnaryNode : Node
     {
-        // Constructor accepts the two nodes to be operated on and function
-        // that performs the actual operation
+        // Node that performs unary operations (eg: positive|negative)
         public UnaryNode(Node rhs, Func<double, double> op)
         {
             _rhs = rhs;

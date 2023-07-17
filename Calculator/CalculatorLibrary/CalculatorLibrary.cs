@@ -31,10 +31,10 @@ namespace CalculatorLibrary
 
         public double EvaluateExpression(string expression)
         {
-            //Parse and evaluate the mathematical expression
+            //  Parse and evaluate the mathematical expression
             double result = Parser.Parse(expression).Eval();
 
-            //If no errors occured, write log to the json file
+            //  If no errors occured, write log to the json file
             _writer.WriteStartObject();
             _writer.WritePropertyName("Expression");
             _writer.WriteValue(expression);

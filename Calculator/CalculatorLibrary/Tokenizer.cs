@@ -7,6 +7,16 @@ using System.Threading.Tasks;
 
 namespace CalculatorLibrary
 {
+    public enum Token
+    {
+        EOF,
+        Add,
+        Subtract,
+        Multiply,
+        Divide,
+        Number
+    }
+
     public class Tokenizer
     {
         public Tokenizer(TextReader reader)
@@ -30,7 +40,7 @@ namespace CalculatorLibrary
             get { return _number; }
         }
 
-        // Read the next character from the input strem
+        // Read the next character from the input stream
         // and store it in _currentChar, or load '\0' if EOF
         void NextChar()
         {
